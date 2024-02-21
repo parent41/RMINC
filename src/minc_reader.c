@@ -571,7 +571,7 @@ void write_minc2_volume(char **output, char **like_filename,
   }
 
   /* create the new volume */
-  if ( micreate_volume(output[0], 3, dimensions_new, MI_TYPE_USHORT,
+  if ( micreate_volume(output[0], 3, dimensions_new, MI_TYPE_DOUBLE,
 		       MI_CLASS_REAL, NULL, &hvol_new) < 0 ) {
     error("Error creating volume %s\n", output[0]);
   }
@@ -580,7 +580,7 @@ void write_minc2_volume(char **output, char **like_filename,
   }
   
   /* set valid and real range */
-  miset_volume_valid_range(hvol_new, 65535, 0);
+  miset_volume_valid_range(hvol_new, max_range[0], min_range[0]);
   miset_volume_range(hvol_new, max_range[0], min_range[0]);
 
   Rprintf("Range: %f %f\n", max_range[0], min_range[0]);
